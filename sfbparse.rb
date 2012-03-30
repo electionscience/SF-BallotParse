@@ -1,0 +1,2 @@
+class SFBallotParse
+end
