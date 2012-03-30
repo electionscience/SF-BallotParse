@@ -1,3 +1,5 @@
+require './lib/master_lookup_line'
+
 class SFBallotParse
   attr_reader :candidates
 
@@ -36,19 +38,5 @@ class SFBallotParse
     
   def master_lookup
     Dir.glob(master_lookup_glob).first
-  end
-end
-
-class MasterLookupLine
-  def initialize(line)
-    @line = line
-  end
-  
-  def candidate_name
-    @line[17,50].rstrip
-  end
-  
-  def is_candidate?
-    !!@line.match(/^Candidate/)
   end
 end
