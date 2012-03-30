@@ -1,5 +1,6 @@
 require './lib/candidate'
 require './lib/master_lookup'
+require './lib/ballot_image'
 
 module SFBP
   ROOT = File.dirname(__FILE__)
@@ -26,13 +27,17 @@ class SFBallotParse
   end
 
   def candidates #make this private
-    @candidates ||= master_lookup.candidates
+    candidate_list.candidates
   end
 
   private
 
-  def calculate_preferences
+  def candidate_list
+    master_lookup.candidate_list
+  end
 
+  def calculate_preferences
+    BallotImage.new(candidate_list)
   end
 
   def each_matchup

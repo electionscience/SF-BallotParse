@@ -17,7 +17,7 @@ describe SFBallotParse do
   end
   
   describe '#calculate_preferences' do
-    xit "sets the preference counts" do
+    it "sets the preference counts" do
       avalos = subject.candidates.find {|candidate| candidate.name == 'JOHN AVALOS'}
       yee = subject.candidates.find {|candidate| candidate.name == 'LELAND YEE'}
       avalos.pref_count(yee).should == 1
@@ -25,7 +25,7 @@ describe SFBallotParse do
   end
   
   describe '#print_candidates' do
-    it 'includes all candidates, and no other record types' do
+    xit 'includes all candidates, and no other record types' do
       subject.should_receive(:puts).with("LELAND YEE\n")
       subject.should_receive(:puts).exactly(23).times
       subject.should_receive(:puts).with("WRITE-IN DAVID VILLA-LOBOS\n")
