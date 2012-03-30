@@ -1,10 +1,6 @@
 require 'master_lookup_line'
 
-class MasterLookup
-  def initialize(source_dir_relative_path)
-    @source_dir_relative_path = source_dir_relative_path
-  end
-  
+class MasterLookup  
   def candidates
     @candidates ||= File.open(master_lookup) do |file|
       candidates_from_master_lookup(file)
@@ -18,13 +14,13 @@ class MasterLookup
     while line = file.gets
       lookup_line = MasterLookupLine.new(line)
       break unless lookup_line.is_candidate?
-      result << lookup_line.description
+      result << ::Candidate.new(name: lookup_line.description)
     end
     result
   end
 
   def source_dir_path
-    File.join(SFBP::ROOT, @source_dir_relative_path)
+    File.join(SFBP::ROOT, SFBP::SOURCE_DIR_RELATIVE_PATH)
   end
 
   def master_lookup_glob
