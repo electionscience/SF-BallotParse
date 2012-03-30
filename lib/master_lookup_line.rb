@@ -3,7 +3,7 @@ class MasterLookupLine
     @line = line
   end
   
-  def candidate_name
+  def description
     @line[17,50].rstrip
   end
   

@@ -21,4 +21,13 @@ describe SFBallotParse do
       subject.candidates.length.should == 25
     end
   end
+  
+  describe '#print_candidates' do
+    it 'should include all candidates, and no other record types' do
+      subject.should_receive(:puts).with("LELAND YEE\n")
+      subject.should_receive(:puts).exactly(23).times
+      subject.should_receive(:puts).with("WRITE-IN DAVID VILLA-LOBOS\n")
+      subject.print_candidates
+    end
+  end
 end
