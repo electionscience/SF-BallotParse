@@ -22,6 +22,13 @@ class CandidateList
   def matchups
     candidates.combination(CANDIDATES_PER_MATCHUP)
   end
+  
+  def each_matchup
+    matchups.each do |matchup|
+      subject, opponent = matchup
+      yield(subject, opponent)
+    end
+  end
 
   private
   

@@ -33,17 +33,6 @@ class SFBallotParse
   def calculate_preferences
     BallotImageReader.new(candidate_list)
   end
-
-  def each_matchup
-    matchups.each do |matchup|
-      subject, opponent = matchup
-      yield subject, opponent
-    end
-  end
-
-  def matchups
-    @matchups ||= candidates.combinations(2)
-  end
   
   def master_lookup
     @master_lookup ||= MasterLookup.new(SFBP::SOURCE_DIR_RELATIVE_PATH)
