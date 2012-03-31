@@ -2,26 +2,16 @@ require 'rspec'
 require './sfbparse'
 
 describe SFBallotParse do
-  describe '#candidates' do
-    it 'gets the first candidate' do
-      subject.candidates.map(&:name).should include 'LELAND YEE'
-    end
-    
-    it 'gets the last candidate' do
-      subject.candidates.map(&:name).should include 'WRITE-IN DAVID VILLA-LOBOS'
-    end
-    
-    it 'processes all candidates, and no other record types' do
-      subject.candidates.map(&:name).length.should == 25
-    end
+  def get_candidate_by_name(name)
+    subject.send(:candidates).find {|candidate| candidate.name == name }
   end
-  
+
   describe '#calculate_preferences' do
     it "sets the preference counts" do
-      avalos = subject.candidates.find {|candidate| candidate.name == 'JOHN AVALOS'}
-      yee = subject.candidates.find {|candidate| candidate.name == 'LELAND YEE'}
-      chiu = subject.candidates.find {|candidate| candidate.name == 'DAVID CHIU'}
-      lee = subject.candidates.find {|candidate| candidate.name == 'ED LEE'}
+      avalos = get_candidate_by_name('JOHN AVALOS')
+      yee = get_candidate_by_name('LELAND YEE')
+      chiu = get_candidate_by_name('DAVID CHIU')
+      lee = get_candidate_by_name('ED LEE')
 
       avalos.pref_count(yee).should == 1
       avalos.pref_count(chiu).should == 1

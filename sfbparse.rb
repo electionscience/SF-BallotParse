@@ -26,14 +26,14 @@ class SFBallotParse
     end
   end
 
-  def candidates #make this private
-    candidate_list.candidates
-  end
-
   private
 
   def candidate_list
     master_lookup.candidate_list
+  end
+
+  def candidates
+    candidate_list.candidates
   end
 
   def calculate_preferences
