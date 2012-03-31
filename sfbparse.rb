@@ -1,6 +1,6 @@
 require './lib/candidate'
 require './lib/master_lookup'
-require './lib/ballot_image'
+require './lib/ballot_image_reader'
 
 module SFBP
   ROOT = File.dirname(__FILE__)
@@ -37,7 +37,7 @@ class SFBallotParse
   end
 
   def calculate_preferences
-    BallotImage.new(candidate_list)
+    BallotImageReader.new(candidate_list)
   end
 
   def each_matchup

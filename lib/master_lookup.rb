@@ -3,7 +3,7 @@ require 'candidate_list'
 
 class MasterLookup  
   def candidate_list
-    @candidate_list ||= File.open(master_lookup) do |file|
+    @candidate_list ||= File.open(master_lookup_file_path) do |file|
       candidates_from_master_lookup(file)
     end
   end
@@ -15,7 +15,7 @@ class MasterLookup
     while line = file.gets
       lookup_line = MasterLookupLine.new(line)
       break unless lookup_line.is_candidate?
-      candidate_list.add(name: lookup_line.description)
+      candidate_list.add(name: lookup_line.description, id: lookup_line.id)
     end
     candidate_list
   end
@@ -28,7 +28,7 @@ class MasterLookup
     File.join(source_dir_path, '*-MasterLookup.txt')
   end
     
-  def master_lookup
+  def master_lookup_file_path
     Dir.glob(master_lookup_glob).first
   end
 end

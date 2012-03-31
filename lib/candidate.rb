@@ -1,8 +1,9 @@
 class Candidate
-  attr_reader :name
+  attr_reader :name, :id
 
   def initialize(options = {})
     @name = options[:name]
+    @id = options[:id]
     @pref_counts = Hash.new(0)
   end
 
