@@ -15,7 +15,7 @@ class MasterLookup
     while line = file.gets
       lookup_line = MasterLookupLine.new(line)
       break unless lookup_line.is_candidate?
-      candidate_list.add(name: lookup_line.description, id: lookup_line.id)
+      candidate_list.add(Candidate.new(name: lookup_line.description, id: lookup_line.id))
     end
     candidate_list
   end

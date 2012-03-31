@@ -1,6 +1,8 @@
 class CandidateList
-  def add(options)
-    candidates << Candidate.new(options)
+  CANDIDATES_PER_MATCHUP = 2
+  def add(candidate)
+    candidates << candidate
+    self
   end
   
   def add_ranking(first, second, third)
@@ -15,6 +17,10 @@ class CandidateList
     candidate = candidates.find {|candidate| candidate.id == candidate_id}
     raise IndexError, "Candidate ID #{candidate_id} not found" unless candidate
     candidate
+  end
+
+  def matchups
+    candidates.combination(CANDIDATES_PER_MATCHUP)
   end
 
   private

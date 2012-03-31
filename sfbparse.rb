@@ -13,12 +13,6 @@ class SFBallotParse
   def initialize
     calculate_preferences
   end
-  
-  def print_candidates
-    candidates.each do |candidate|
-      puts "#{candidate.name}\n"
-    end
-  end
 
   def print_matchups
     each_matchup do |subject, opponent|
