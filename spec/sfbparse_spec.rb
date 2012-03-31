@@ -20,7 +20,14 @@ describe SFBallotParse do
     it "sets the preference counts" do
       avalos = subject.candidates.find {|candidate| candidate.name == 'JOHN AVALOS'}
       yee = subject.candidates.find {|candidate| candidate.name == 'LELAND YEE'}
+      chiu = subject.candidates.find {|candidate| candidate.name == 'DAVID CHIU'}
+      lee = subject.candidates.find {|candidate| candidate.name == 'ED LEE'}
+
       avalos.pref_count(yee).should == 1
+      avalos.pref_count(chiu).should == 1
+      lee.pref_count(yee).should == 1
+      yee.pref_count(lee).should == 0
+      yee.pref_count(chiu).should == 1
     end
   end
   
