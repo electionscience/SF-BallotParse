@@ -15,6 +15,8 @@ describe Conductor do
       chiu = get_candidate_by_name('DAVID CHIU')
       lee = get_candidate_by_name('ED LEE')
 
+      subject.calculate_preferences
+
       avalos.pref_count(yee).should == 1
       avalos.pref_count(chiu).should == 1
       lee.pref_count(yee).should == 1
