@@ -18,14 +18,12 @@ describe PresentResults do
   describe '#print_matchups' do
     it "passes a matchup graph to puts" do
       graph = nil
-      subject.stub(:puts) do |text|
-        graph = text
-      end
+      subject.stub(:puts) { |text| graph = text }
       subject.print_matchups
       graph.should_not be_nil
-      graph.should include "candidate 1 is preferred to candidate 2 by 3 voter(s).\n"
-      graph.should include "candidate 1 is preferred to candidate 3 by 5 voter(s).\n"
-      graph.should include "candidate 2 is preferred to candidate 3 by 7 voter(s).\n"
+      graph.should include "candidate 1 is preferred to candidate 2 by 3 voter(s)."
+      graph.should include "candidate 1 is preferred to candidate 3 by 5 voter(s)."
+      graph.should include "candidate 2 is preferred to candidate 3 by 7 voter(s)."
     end
   end
 end

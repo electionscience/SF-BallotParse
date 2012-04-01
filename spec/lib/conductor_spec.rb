@@ -1,7 +1,9 @@
 require 'rspec'
-require './sfbparse'
+require 'conductor'
 
-describe SFBallotParse do
+describe Conductor do
+  SFBP::SOURCE_DIR_PATH_FROM_ROOT = 'spec/fixtures/2012-mayor'
+
   def get_candidate_by_name(name)
     subject.send(:candidates).find {|candidate| candidate.name == name }
   end

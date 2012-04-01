@@ -1,5 +1,6 @@
 class CandidateList
   CANDIDATES_PER_MATCHUP = 2
+
   def add(candidate)
     candidates << candidate
     self
