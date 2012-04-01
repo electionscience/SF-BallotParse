@@ -19,10 +19,6 @@ class CandidateList
     raise IndexError, "Candidate ID #{candidate_id} not found" unless candidate
     candidate
   end
-
-  def matchups
-    candidates.combination(CANDIDATES_PER_MATCHUP)
-  end
   
   def each_matchup
     matchups.each do |matchup|
@@ -33,6 +29,10 @@ class CandidateList
 
   private
   
+  def matchups
+    candidates.permutation(CANDIDATES_PER_MATCHUP)
+  end
+
   def new_ranking_tabulator
     RankingTabulator.new(self)
   end

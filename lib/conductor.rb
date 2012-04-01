@@ -2,14 +2,13 @@ require 'sfbp'
 require 'candidate'
 require 'master_lookup'
 require 'ballot_image_reader'
+require 'present_results'
 
 class Conductor
   attr_reader :candidates
 
   def print_matchups
-    each_matchup do |subject, opponent|
-      puts "#{subject.name} is preferred to #{opponent.name} by #{subject.pref_count(opponent)} voters.\n"
-    end
+    present_results.print_matchups
   end
 
   def calculate_preferences
@@ -17,6 +16,10 @@ class Conductor
   end
 
   private
+  
+  def present_results
+    PresentResults.new(candidate_list)
+  end
 
   def candidate_list
     master_lookup.candidate_list

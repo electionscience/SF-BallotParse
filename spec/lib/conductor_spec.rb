@@ -1,4 +1,3 @@
-require 'rspec'
 require 'conductor'
 
 describe Conductor do
@@ -9,7 +8,7 @@ describe Conductor do
   end
 
   describe '#calculate_preferences' do
-    it "sets the preference counts" do
+    it 'sets the preference counts' do
       avalos = get_candidate_by_name('JOHN AVALOS')
       yee = get_candidate_by_name('LELAND YEE')
       chiu = get_candidate_by_name('DAVID CHIU')
@@ -22,6 +21,28 @@ describe Conductor do
       lee.pref_count(yee).should == 1
       yee.pref_count(lee).should == 0
       yee.pref_count(chiu).should == 1
+    end
+  end
+  
+  describe '#print_matchups' do
+    before do
+      subject.calculate_preferences
+    end
+
+    it 'prints results for all matchups' do
+      checked_lines = [
+        ["JOHN AVALOS", "LELAND YEE", 1],
+        ["JOHN AVALOS", "DAVID CHIU", 1]
+      ].map do |subject, opponent, pref_count|
+        "#{subject} is preferred to #{opponent} by #{pref_count} voter(s).\n"
+      end
+
+      $stdout.stub(:puts) do |string|
+        checked_lines -= [string]
+      end
+      subject.print_matchups
+      
+      checked_lines.should be_empty
     end
   end
 end
