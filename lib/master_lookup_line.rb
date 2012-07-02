@@ -4,7 +4,6 @@ class MasterLookupLine
   RECORD_DESCRIPTION_START_INDEX = 17
   RECORD_DESCRIPTION_LENGTH = 50
 
-
   def initialize(line)
     @line = line
   end
