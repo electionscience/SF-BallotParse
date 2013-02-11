@@ -1,7 +1,4 @@
 BallotImageLine = Struct.new(:line, :candidate_list) do
-  CANDIDATE_ID_START_INDEX = 36
-  CANDIDATE_ID_LENGTH = 7
-
   def candidate
     return nil if record_id == '0000000'
     candidate_list.find(record_id)
@@ -13,3 +10,6 @@ BallotImageLine = Struct.new(:line, :candidate_list) do
     line[CANDIDATE_ID_START_INDEX, CANDIDATE_ID_LENGTH]
   end
 end
+
+BallotImageLine::CANDIDATE_ID_START_INDEX = 36
+BallotImageLine::CANDIDATE_ID_LENGTH = 7
