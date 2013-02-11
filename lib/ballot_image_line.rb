@@ -1,4 +1,4 @@
-class BallotImageLine < Struct.new(:line, :candidate_list)
+BallotImageLine = Struct.new(:line, :candidate_list) do
   CANDIDATE_ID_START_INDEX = 36
   CANDIDATE_ID_LENGTH = 7
 
